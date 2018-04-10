@@ -9,6 +9,7 @@
 import Foundation
 
 
+
 struct MK_MetaData_Class {
 
     fileprivate static var typePropertyCacheDic:[String:[String:MK_Property]] = [:]
@@ -90,7 +91,7 @@ struct MK_MetaData_Class {
             }
             let supRes = Mi.children.reduce(into: Array<MK_Property>.init()) { (res, item) in
                 guard let name = item.label,let ivar = dic[name] else {return}
-                let tt = type(of: item.value)
+
                 let pp = MK_Property.init(name: name, off: Int(ivar.off.pointee), type: type(of: item.value))
                 res.append(pp)
             }

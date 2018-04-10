@@ -16,6 +16,7 @@
 		10396630207B344000DB9CEE /* MK_MetaData_Class.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1039662F207B344000DB9CEE /* MK_MetaData_Class.swift */; };
 		10396632207B36EE00DB9CEE /* MK_ORM_Factory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10396631207B36EE00DB9CEE /* MK_ORM_Factory.swift */; };
 		10396638207C557900DB9CEE /* MK_AnyExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10396637207C557800DB9CEE /* MK_AnyExtension.swift */; };
+		1039663A207C80C200DB9CEE /* MK_MetaData_Struct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10396639207C80C200DB9CEE /* MK_MetaData_Struct.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +32,7 @@
 		1039662F207B344000DB9CEE /* MK_MetaData_Class.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MK_MetaData_Class.swift; sourceTree = "<group>"; };
 		10396631207B36EE00DB9CEE /* MK_ORM_Factory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MK_ORM_Factory.swift; sourceTree = "<group>"; };
 		10396637207C557800DB9CEE /* MK_AnyExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MK_AnyExtension.swift; sourceTree = "<group>"; };
+		10396639207C80C200DB9CEE /* MK_MetaData_Struct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MK_MetaData_Struct.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,6 +82,7 @@
 				10396631207B36EE00DB9CEE /* MK_ORM_Factory.swift */,
 				10396637207C557800DB9CEE /* MK_AnyExtension.swift */,
 				1039662F207B344000DB9CEE /* MK_MetaData_Class.swift */,
+				10396639207C80C200DB9CEE /* MK_MetaData_Struct.swift */,
 				10396629207B2EA900DB9CEE /* MK_Property.swift */,
 				1039662B207B304D00DB9CEE /* MK_Kind.swift */,
 			);
@@ -164,6 +167,7 @@
 				10396638207C557900DB9CEE /* MK_AnyExtension.swift in Sources */,
 				1039662C207B304D00DB9CEE /* MK_Kind.swift in Sources */,
 				10396630207B344000DB9CEE /* MK_MetaData_Class.swift in Sources */,
+				1039663A207C80C200DB9CEE /* MK_MetaData_Struct.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

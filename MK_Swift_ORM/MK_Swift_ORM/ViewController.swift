@@ -23,24 +23,38 @@ class TT:SupClass{
 
     var num:Int? = 1
 
+    var str:NSString = "12345" as NSString
+
 }
 
+struct SS : MK_MetaData_Struct_Protocol{
 
+
+    var age:Int = 16
+
+    var yy:Int8 = 10
+
+    var name:String = "11111111"
+
+
+}
 
 class ViewController: NSViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        
+        var ob = SS()
 
-        let ob = TT()
-
-        let va = MK_MetaData_Class.getValueForKey(ob: ob, key: "num")
-
+        let p = ob.getStructPointHead()
+        let pp = MK_MetaData_Struct.getStruct_PropertyDic(ob: ob)["name"]!
 
 
-        
+        try? typeTransition(pp.type).write("2222", to: UnsafeMutableRawPointer(p.advanced(by: pp.off)))
+
+
+        print(ob)
+
     }
 
 }

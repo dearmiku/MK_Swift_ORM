@@ -9,12 +9,36 @@
 import Foundation
 
 
-class MK_ORM_Factory {
-
-    static let share = MK_ORM_Factory()
+public typealias MK_ORM_Protocol = MK_MetaData_Struct_Protocol
 
 
+public func mk_SetValue(ob:inout MK_ORM_Protocol,value:Any,key:String) {
 
+    let kind = MK_Kind.initWith(type: type(of: ob))
 
+    if kind == .class{
+
+        MK_MetaData_Class.setValueforKey(ob: ob, key: key, value: value)
+
+    }else if kind == .struct {
+
+        MK_MetaData_Struct.setValueforKey(ob:&ob, key: key, value: value)
+    }
 }
+
+
+public func mk_GetValue(ob:inout MK_ORM_Protocol,key:String)->Any{
+
+    let kind = MK_Kind.initWith(type: type(of: ob))
+    if kind == .class{
+
+        return MK_MetaData_Class.getValueForKey(ob: ob, key: key)
+
+    }else if kind == .struct {
+
+        return MK_MetaData_Struct.getValueForKey(ob: &ob, key: key)
+    }
+}
+
+
 

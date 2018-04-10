@@ -12,6 +12,12 @@ protocol MK_AnyExtension {}
 
 extension MK_AnyExtension {
 
+    static var stride:Int{
+        get{
+            return MemoryLayout<Self>.stride
+        }
+    }
+
     static func get(from p:UnsafeMutableRawPointer)->Any{
         return p.assumingMemoryBound(to: self).pointee
     }
