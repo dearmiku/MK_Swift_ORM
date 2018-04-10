@@ -21,7 +21,7 @@ class SupClass:grandClass{
 
 class TT:SupClass{
 
-    var num:Int = 0
+    var num:Int? = 1
 
 }
 
@@ -32,15 +32,13 @@ class ViewController: NSViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        
+
         let ob = TT()
 
-        let value = MK_MetaData_Class.getClass_PropertyArr(ob: ob)
-        let ob_t = MK_MetaData_Class.headPointerOfClass(ob: ob)
+        let va = MK_MetaData_Class.getValueForKey(ob: ob, key: "num")
 
-        let pp = value.first!
 
-        UnsafeMutableRawPointer(ob_t.advanced(by: pp.off)).assumingMemoryBound(to: Int.self).pointee = 10
-        
 
         
     }

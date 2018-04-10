@@ -11,18 +11,43 @@ import Foundation
 
 struct MK_MetaData_Class {
 
+    fileprivate static var typePropertyCacheDic:[String:[String:MK_Property]] = [:]
 
-    static var typePropertyCacheDic:[String:[MK_Property]] = [:]
+
+    static func setValueforKey(ob:Any,key:String,value:Any){
+
+        let ppDic = getClass_PropertyDic(ob: ob)
+        let headP = getOBPointHead(ob: ob as AnyObject)
+
+        guard let pp = ppDic[key] else {return}
+        guard pp.type == type(of: value) else { return }
+
+        try? typeTransition(pp.type).write(value, to: UnsafeMutableRawPointer(headP.advanced(by: pp.off)))
+    }
+
+    static func getValueForKey(ob:Any,key:String)->Any {
+
+        let ppDic = getClass_PropertyDic(ob: ob)
+        let headP = getOBPointHead(ob: ob as AnyObject)
+
+        guard let pp = ppDic[key] else {
+            return NSNull()
+        }
+        return typeTransition(pp.type).get(from: UnsafeMutableRawPointer(headP.advanced(by: pp.off)))
+    }
+
     
-    static func headPointerOfClass(ob:AnyObject) -> UnsafeMutablePointer<Int8> {
+    static func getOBPointHead(ob:AnyObject) -> UnsafeMutablePointer<Int8> {
         
         let stride = MemoryLayout.stride(ofValue: type(of: ob))
-        let opaquePointer = Unmanaged.passUnretained(ob).toOpaque()
-        let mutableTypedPointer = opaquePointer.bindMemory(to: Int8.self, capacity: stride)
-        return UnsafeMutablePointer<Int8>(mutableTypedPointer)
+        let opaqueP = Unmanaged.passUnretained(ob).toOpaque()
+        let mutableTypedP = opaqueP.bindMemory(to: Int8.self, capacity: stride)
+        return UnsafeMutablePointer<Int8>(mutableTypedP)
     }
-    
-    static func getClass_PropertyArr(ob:Any) -> [MK_Property]{
+
+
+
+    static func getClass_PropertyDic(ob:Any) -> [String:MK_Property]{
         
         let tt = type(of: ob)
 
@@ -30,9 +55,10 @@ struct MK_MetaData_Class {
         let metaData = UnsafeRawPointer(typeInfo_t).assumingMemoryBound(to: MK_Class.self).pointee
         
         guard let ro = metaData.class_rw_t()?.pointee.class_ro_t()?.pointee else {
-            return []
+            return [:]
         }
 
+        ///Check the cache
         if let cachArr = MK_MetaData_Class.typePropertyCacheDic[String.init(cString: ro.name)] {
             return cachArr
         }
@@ -50,8 +76,7 @@ struct MK_MetaData_Class {
             let pp = MK_Property.init(name: name, off: Int(ivar.off.pointee), type: type(of: item.value))
             res.append(pp)
         }
-        
-        
+
         var superMi = mi.superclassMirror
         
         func getSuperIvarArr(){
@@ -65,6 +90,7 @@ struct MK_MetaData_Class {
             }
             let supRes = Mi.children.reduce(into: Array<MK_Property>.init()) { (res, item) in
                 guard let name = item.label,let ivar = dic[name] else {return}
+                let tt = type(of: item.value)
                 let pp = MK_Property.init(name: name, off: Int(ivar.off.pointee), type: type(of: item.value))
                 res.append(pp)
             }
@@ -75,8 +101,12 @@ struct MK_MetaData_Class {
         }
         getSuperIvarArr()
 
-        MK_MetaData_Class.typePropertyCacheDic[String.init(cString: ro.name)] = res
-        return res
+        var dic:[String:MK_Property] = [:]
+        res.forEach { (item) in
+            dic[item.name] = item
+        }
+        MK_MetaData_Class.typePropertyCacheDic[String.init(cString: ro.name)] = dic
+        return dic
     }
     
     

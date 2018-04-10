@@ -15,6 +15,7 @@
 		1039662C207B304D00DB9CEE /* MK_Kind.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1039662B207B304D00DB9CEE /* MK_Kind.swift */; };
 		10396630207B344000DB9CEE /* MK_MetaData_Class.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1039662F207B344000DB9CEE /* MK_MetaData_Class.swift */; };
 		10396632207B36EE00DB9CEE /* MK_ORM_Factory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10396631207B36EE00DB9CEE /* MK_ORM_Factory.swift */; };
+		10396638207C557900DB9CEE /* MK_AnyExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10396637207C557800DB9CEE /* MK_AnyExtension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +30,7 @@
 		1039662B207B304D00DB9CEE /* MK_Kind.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MK_Kind.swift; sourceTree = "<group>"; };
 		1039662F207B344000DB9CEE /* MK_MetaData_Class.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MK_MetaData_Class.swift; sourceTree = "<group>"; };
 		10396631207B36EE00DB9CEE /* MK_ORM_Factory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MK_ORM_Factory.swift; sourceTree = "<group>"; };
+		10396637207C557800DB9CEE /* MK_AnyExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MK_AnyExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,6 +78,7 @@
 			isa = PBXGroup;
 			children = (
 				10396631207B36EE00DB9CEE /* MK_ORM_Factory.swift */,
+				10396637207C557800DB9CEE /* MK_AnyExtension.swift */,
 				1039662F207B344000DB9CEE /* MK_MetaData_Class.swift */,
 				10396629207B2EA900DB9CEE /* MK_Property.swift */,
 				1039662B207B304D00DB9CEE /* MK_Kind.swift */,
@@ -158,6 +161,7 @@
 				1039661B207B2DF700DB9CEE /* ViewController.swift in Sources */,
 				10396632207B36EE00DB9CEE /* MK_ORM_Factory.swift in Sources */,
 				10396619207B2DF700DB9CEE /* AppDelegate.swift in Sources */,
+				10396638207C557900DB9CEE /* MK_AnyExtension.swift in Sources */,
 				1039662C207B304D00DB9CEE /* MK_Kind.swift in Sources */,
 				10396630207B344000DB9CEE /* MK_MetaData_Class.swift in Sources */,
 			);
