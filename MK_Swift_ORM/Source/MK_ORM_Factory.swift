@@ -16,7 +16,7 @@ public func mk_SetValue(ob:inout MK_ORM_Protocol,value:Any,key:String) {
 
     let kind = MK_Kind.initWith(type: type(of: ob))
 
-    if kind == .class{
+    if kind == .class || kind == .objCClassWrapper{
 
         MK_MetaData_Class.setValueforKey(ob: ob, key: key, value: value)
 
@@ -38,6 +38,7 @@ public func mk_GetValue(ob:inout MK_ORM_Protocol,key:String)->Any{
 
         return MK_MetaData_Struct.getValueForKey(ob: &ob, key: key)
     }
+    return NSNull()
 }
 
 

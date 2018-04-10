@@ -19,15 +19,16 @@ class SupClass:grandClass{
 }
 
 
-class TT:SupClass{
+class TT:SupClass,MK_ORM_Protocol{
 
-    var num:Int? = 1
+    var num:Int = 1
 
     var str:NSString = "12345" as NSString
 
 }
 
-struct SS : MK_MetaData_Struct_Protocol{
+
+struct SS:MK_ORM_Protocol{
 
 
     var age:Int = 16
@@ -44,16 +45,17 @@ class ViewController: NSViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        var ob = SS()
-
-        let p = ob.getStructPointHead()
-        let pp = MK_MetaData_Struct.getStruct_PropertyDic(ob: ob)["name"]!
-
-
-        try? typeTransition(pp.type).write("2222", to: UnsafeMutableRawPointer(p.advanced(by: pp.off)))
-
+        var ob = (SS() as MK_ORM_Protocol)
+        var ob1 = (TT()as MK_ORM_Protocol)
 
         print(ob)
+        print((ob1 as! TT).num)
+
+        mk_SetValue(ob: &ob, value: "2222", key: "name")
+        mk_SetValue(ob: &(ob1), value:Int(2), key: "num")
+
+        print(ob)
+        print((ob1 as! TT).num)
 
     }
 

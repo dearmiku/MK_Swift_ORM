@@ -36,6 +36,7 @@ class MK_MetaData_Struct {
         let headP = ob.getStructPointHead()
 
         guard let pp = ppDic[key] else {return}
+        
         guard pp.type == type(of: value) else { return }
 
         try? typeTransition(pp.type).write(value, to: UnsafeMutableRawPointer(headP.advanced(by: pp.off)))
